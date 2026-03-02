@@ -9,7 +9,6 @@ A full-featured blog web application built with **Django** — allowing users to
 - 🔐 **User Authentication** — Register, login, and logout functionality via the `accounts` app
 - 📄 **Blog Posts** — Create, view, and manage blog posts through the `plogapp`
 - 🧭 **Routing & Config** — Clean URL routing managed by the `plog` project configuration
-- 🎨 **Responsive UI** — Custom CSS styling with HTML templates for a seamless experience
 - 🗄️ **Django ORM** — Database management using Django's built-in ORM
 
 ---

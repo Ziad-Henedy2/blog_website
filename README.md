@@ -109,15 +109,3 @@ Contributions are welcome! Feel free to fork the repo and submit a pull request.
 4. Push to the branch: `git push origin feature/your-feature`
 5. Open a Pull Request
 
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 👨‍💻 Author
-
-**Ziad Henedy**  
-GitHub: [@Ziad-Henedy2](https://github.com/Ziad-Henedy2)

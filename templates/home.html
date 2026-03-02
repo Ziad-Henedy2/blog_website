@@ -1,9 +1,9 @@
 {% extends "base.html" %} 
 
 {% block content%}
-{% for post in posts %}
+{% for post in post_list %}
 <div calss = "post-entry">
-    <h2> <a href = "{{ post.get_absoulute_url }} ">{{ post.title }}</a> </h2>
+    <h2> <a href = "{{ post.get_absolute_url }} ">{{ post.title }}</a> </h2>
     <p> auther : {{post.author}} </p>
     <p> {{post.body}} </p>
 </div>

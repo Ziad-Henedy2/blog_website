@@ -23,7 +23,7 @@ class blogtest(TestCase):
         self.assertEqual(self.post.author.username , "test_user")
         self.assertEqual(self.post.body, "test_body")
         self.assertEqual(str(self.post),"test_title")
-        self.assertEqual(self.post.get_absoulute_url(), "/post/1/")
+        self.assertEqual(self.post.get_absolute_url(), "/post/1/")
 
     def test_url_home_are_exists_in_correct_location(self):
         responce = self.client.get("/")
@@ -46,3 +46,26 @@ class blogtest(TestCase):
         self.assertEqual(no_responce.status_code,404)
         self.assertContains(responce , "test_body")
         self.assertTemplateUsed(responce , "post_detail.html")
+
+    def test_post_createView(self):
+        responce = self.client.post(reverse("new_post"),{
+            "title":"new post",
+            "body":"this body",
+            "author":self.user.id
+        },)
+        self.assertEqual(responce.status_code,302)
+        self.assertEqual(post.objects.last().title,"new post")
+        self.assertEqual(post.objects.last().body,"this body")
+
+    def test_post_updateview(self):
+        responce = self.client.post(reverse("post_update",args="1"),{
+            "title" : "ziadhere",
+            "body" :"newbody"
+        })
+        self.assertEqual(responce.status_code,302)
+        self.assertEqual(post.objects.last().title,"ziadhere")
+        self.assertEqual(post.objects.last().body,"newbody")
+    
+    def test_post_deleteview(self):
+        responce = self.client.post(reverse("delete_post", args="1"))
+        self.assertEqual(responce.status_code,302) 

@@ -1,40 +1,77 @@
-# 📝 Blog Website
+# Blog Website
 
-A full-featured blog web application built with **Django** — allowing users to register, log in, create posts, and browse content in a clean, responsive interface.
+A full-featured blog web application built with **Django** — allowing users to register, log in, create, update, and delete blog posts in a clean, responsive interface.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🔐 **User Authentication** — Register, login, and logout functionality via the `accounts` app
-- 📄 **Blog Posts** — Create, view, and manage blog posts through the `plogapp`
-- 🧭 **Routing & Config** — Clean URL routing managed by the `plog` project configuration
-- 🗄️ **Django ORM** — Database management using Django's built-in ORM
+- **User Authentication** — Register, login, and logout via the `accounts` app
+- **Full CRUD for Posts** — Create, read, update, and delete blog posts
+- **Home Feed** — Browse all published blog posts on the homepage
+- **Post Detail View** — Read individual posts on a dedicated page
+- **Delete Confirmation** — Safe post deletion with a confirmation step
+- **SQLite Database** — Lightweight local database, ready out of the box
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer       | Technology          |
-|-------------|---------------------|
-| Backend     | Python, Django      |
-| Frontend    | HTML5, CSS3         |
-| Database    | SQLite (default)    |
-| Auth        | Django Auth System  |
+| Layer       | Technology              |
+|-------------|-------------------------|
+| Backend     | Python 3, Django        |
+| Frontend    | HTML5, CSS3 (base.css)  |
+| Database    | SQLite3                 |
+| Auth        | Django Auth System      |
+| Server      | WSGI / ASGI (Django)    |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 blog_website/
-├── accounts/          # User registration, login & logout
-├── plog/              # Project settings, main URLs, WSGI/ASGI config
-├── plogapp/           # Core blog app — models, views, URLs, forms
+│
+├── accounts/                   # User authentication app
+│   ├── migrations/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── urls.py
+│   ├── views.py
+│   └── tests.py
+│
+├── plog/                       # Project configuration
+│   ├── settings.py
+│   ├── urls.py                 # Root URL dispatcher
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── plogapp/                    # Core blog application
+│   ├── migrations/
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py               # Post model
+│   ├── urls.py
+│   ├── views.py                # CRUD views
+│   └── tests.py
+│
 ├── static/
-│   └── css/           # Custom stylesheets
-├── templates/         # HTML templates (base layout + per-app templates)
-├── manage.py          # Django management entry point
+│   └── css/
+│       └── base.css            # Global stylesheet
+│
+├── templates/                  # Django HTML templates
+│   ├── registration/
+│   │   ├── login.html
+│   │   └── signup.html
+│   ├── base.html               # Shared base layout
+│   ├── home.html               # Blog feed
+│   ├── post_detail.html        # Single post view
+│   ├── new_post.html           # Create post form
+│   ├── post_update.html        # Edit post form
+│   └── delete_post.html        # Delete confirmation
+│
+├── manage.py                   # Django CLI entry point
 └── .gitignore
 ```
 
@@ -72,7 +109,7 @@ blog_website/
    python manage.py migrate
    ```
 
-5. **Create a superuser** *(optional — for admin access)*
+5. **Create a superuser** *(optional — for admin panel access)*
    ```bash
    python manage.py createsuperuser
    ```
@@ -82,23 +119,30 @@ blog_website/
    python manage.py runserver
    ```
 
-7. **Open in browser**
+7. **Open in your browser**
    ```
    http://127.0.0.1:8000/
    ```
 
 ---
 
-## 🔑 Usage
+##  Usage
 
-- **Register** a new account or **log in** with existing credentials
-- Browse the blog homepage to view all published posts
-- Authenticated users can **create and manage** their own blog posts
-- Admin users can manage all content via `/admin`
+| Action            | URL                  |
+|-------------------|----------------------|
+| Home / Post Feed  | `/`                  |
+| Sign Up           | `/accounts/signup/`  |
+| Log In            | `/accounts/login/`   |
+| Log Out           | `/accounts/logout/`  |
+| New Post          | `post/new/`              |
+| Post Detail       | `/post/<id>/`        |
+| Edit Post         | `/post/<id>/update/` |
+| Delete Post       | `/post/<id>/delete/` |
+| Admin Panel       | `/admin/`            |
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to fork the repo and submit a pull request.
 
@@ -107,4 +151,3 @@ Contributions are welcome! Feel free to fork the repo and submit a pull request.
 3. Commit your changes: `git commit -m 'Add some feature'`
 4. Push to the branch: `git push origin feature/your-feature`
 5. Open a Pull Request
-
